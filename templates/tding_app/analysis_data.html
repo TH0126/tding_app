@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析結果（データ）</title>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/tding_app/style2.css' %}">
+</head>
+
+<body>
+    <div class="container-fluid main">
+        <ul class="nav nav-tabs nav-pills">
+            <li class="nav-item">
+                <a href="index" class="nav-link">条件入力</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link active">分析結果（データ）</a>
+            </li>
+            <li class="nav-item">
+                <a href="analysis_chart" class="nav-link">分析結果（チャート）</a>
+            </li>
+            <li class="nav-item">
+                <a href="index4.php" class="nav-link">結果履歴</a>
+            </li>
+            <li class="nav-item">
+                <a href="index5.php" class="nav-link">結果履歴（データ）</a>
+            </li>
+            <li class="nav-item">
+                <a href="index6.php" class="nav-link">結果履歴（チャート）</a>
+            </li>
+        </ul>
+        <div class="dark">
+            <div>
+                <p class="total_p">＜分析結果（合計）＞</p>
+                <ul class="total_ul">
+                    <li class="total_col">
+                        <p>通貨ペア：</p>
+                        <p>時間足：</p>
+                        <p>分析期間：</p>
+                        <p>利確pips</p>
+                        <p>損切りpips</p>
+                        <p>BUY / SELL：</p>
+                        <p>取引回数：</p>
+                        <p>勝率：</p>
+                        <p>損益：</p>
+                        <p>分析条件：</p>
+                    </li>
+                    <li class="total_de">
+                        <p>{{currency}}</p>
+                        <p>{{cha_time}}</p>
+                        <p>{{period}}</p>
+                        <p>{{rikaku}}</p>
+                        <p>{{songiri}}</p>
+                        <p>{{B_S}}</p>
+                        <p>{{cnt}} 回</p>
+                        <p>{{per}} %</p>
+                        <p>{{val}} pips</p>
+                        <p>あああああああああ</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="detail">
+                <p class="detail_p">＜分析結果（明細）＞</p>
+                <table class="col-10 offset-3 table table-sm table-bordered">
+                    <thead class="header">
+                        <tr>
+                            <th scope="col" colspan="1"></th>
+                            <th scope="col" colspan="2">新規</th>
+                            <th scope="col" colspan="2">決済</th>
+                            <th scope="col" rowspan="1" class="row_ver"></th>
+                        </tr>
+                        <tr>
+                            <th scope="col">取引No.</th>
+                            <th scope="col">日時</th>
+                            <th scope="col">約定価格</th>
+                            <th scope="col">日時</th>
+                            <th scope="col">約定価格</th>
+                            <th scope="col">損益（pips）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data_result in data_results %}
+                            <tr class='retu'>
+                                <td>{{data_result.no}}</td>
+                                <td>{{data_result.s_datetime}}</td>
+                                <td>{{data_result.value_start}}</td>
+                                <td>{{data_result.e_datetime}}</td>
+                                <td>{{data_result.value_end}}</td>
+                                <td>{{data_result.pal}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

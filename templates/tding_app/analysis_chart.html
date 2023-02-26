@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャート</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/tding_app/style3.css' %}">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-pills">
+            <li class="nav-item">
+                <a href="input" class="nav-link">条件入力</a>
+            </li>
+            <li class="nav-item">
+                <a href="analysis_data" class="nav-link">分析結果（データ）</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link active">分析結果（チャート）</a>
+            </li>
+            <li class="nav-item">
+                <a href="result.html" class="nav-link">結果履歴</a>
+            </li>
+            <li class="nav-item">
+                <a href="index5.html" class="nav-link">結果履歴（データ）</a>
+            </li>
+            <li class="nav-item">
+                <a href="result_chart.html" class="nav-link">結果履歴（チャート）</a>
+            </li>
+        </ul>
+        <div class="main dark">
+            <div id="chart"></div>
+            <div id="function">
+                <div class="currency">GBPAUD</div>
+                <div id="min1" class="chart_time2">1分</div>
+                <div id="min5" class="chart_time2">5分</div>
+                <div id="min30" class="chart_time2">30分</div>
+                <div id="hour1" class="chart_time act">1時間</div>
+                <div id="hour4" class="chart_time">4時間</div>
+                <div id="day" class="chart_time3">日</div>
+                <div id="week" class="chart_time3">週</div>
+                <div class="technical">
+                    <img src="{% static 'img/tding_app/tec.png' %}" alt="">
+                </div>
+
+            </div>
+        </div>
+        <!-- モーダルウィンドウ群 -->
+        <div class="modal-container">
+            <div class="modal-body">
+                <div class="modal-close">×</div>
+                <div class="modal-content">
+                    <div class="row">
+                        <button type="button" id="inge" class="btn btn-outline-info part1">インジケーター</button>
+                        <button type="button" id="stra" class="btn btn-outline-info part1">ストラテジー</button>
+                    </div>
+                    <hr>
+                    <div id="inge_de">
+                        <div id="s_ma20">● SMA（単純移動平均線）20期間</div>
+                        <div id="s_ma75">● SMA（単純移動平均線）75期間</div>
+                        <div id="s_ma200">● SMA（単純移動平均線）200期間</div>
+                        <div id="s_mtf1d">● MTF MA（マルチタイムフレーム移動平均線）1日</div>
+                        <div id="s_mtf1w">● MTF MA（マルチタイムフレーム移動平均線）1週</div>
+                        <div id="s_pivot">● Pivot（ピボットポイント）</div>
+                    </div>
+                    <div id="stra_de">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const candleData1h = {{data|safe}};
+        const ma20_Data1h = {{ma20|safe}};
+        const ma75_Data1h = {{ma75|safe}};
+        const ma200_Data1h = {{ma200|safe}};
+        const mtf1d_Data1h = {{mtf1d|safe}};
+        const mtf1w_Data1h = {{mtf1w|safe}};
+        const candleData4h = {{data_4|safe}};
+        const ma20_Data4h = {{ma20_4|safe}};
+        const ma75_Data4h = {{ma75_4|safe}};
+        const ma200_Data4h = {{ma200_4|safe}};
+        const mtf1d_Data4h = {{mtf1d_4|safe}};
+        const mtf1w_Data4h = {{mtf1w_4|safe}};
+        const markers_sell_start = {{mark_ss|safe}};
+        const markers_buy_end = {{mark_se|safe}};
+        const markers_buy_start = {{mark_bs|safe}};
+        const markers_sell_end = {{mark_be|safe}};
+        const markers4_sell_start = {{mark4_ss|safe}};
+        const markers4_buy_end = {{mark4_se|safe}};
+        const markers4_buy_start = {{mark4_bs|safe}};
+        const markers4_sell_end = {{mark4_be|safe}};
+
+    </script>
+    <script src="{% static 'js/tding_app/result_chart.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="oya">
+        <div id="test1">str1</div>
+        <div id="test2">str2</div>
+        <input type="text" id="input1">
+        <div id="test3">str3</div>
+        <div id="test4">str4</div>
+        <div id="test5">str5</div>
+    </div>
+    <script>
+        $(function(){
+            //親（#oya)の子要素（要素は指定せず）の３番目を取得（inputを取得する）
+            console.log($("#oya *:nth-child(3)").attr("id"));
+            //divでidがtestで始まるすべての中から2番目のidを取得する。getはラッパーをDOM要素で返す
+            console.log($('div[id^="test"]').get(1).id);
+            //親（#oya)の子要素（要素は指定せず）の４番目のidを取得する。eqはラッパーをラッパーで返す
+            console.log($("#oya *").eq(4-1).attr("id"));
+        });
+    </script>
+</body>
+</html>
